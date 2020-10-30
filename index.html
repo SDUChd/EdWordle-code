@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <title>EdWordle</title>
+    <link rel="Stylesheet" type="text/css" href="style/main.css" />
+	<link rel="Stylesheet" type="text/css" href="style/dhtmlxcolorpicker.css" />
+    <script type="text/javascript" src="js/Box2D_fu.js"></script>
+    <script type="text/javascript" src="js/Box2d-import.js"></script>
+    <script type="text/javascript" src="js/numeric-1.2.6.min.js"></script>
+    <script type="text/javascript" src="js/jQuery.js"></script>
+    <script src="js/jscolor.min.js"></script>
+	<script src="js/dhtmlxcolorpicker.js"></script>
+    <script src="js/hammer.min.js"></script>
+</head>
+
+<body>
+
+    <div class="EditAllTools">
+        <div class="nav">
+            <ul class="nav-main">
+                <li id="li-1">File<span></span></li>
+            </ul>
+            <!--隐藏盒子-->
+            <div id="box-1" class="hidden-box hidden-loc-index">
+                <ul>
+                    <li onclick="LoadFile()">Load File</li>
+                    <li onclick="SaveImg()">Save Image</li>
+                    <li onclick="SaveEditData()">Save Edit Data</li>
+                    <li onclick="LoadEditData()">Load Edit Data</li>
+                </ul>
+            </div>
+        </div>
+        <input name="color2" type="hidden" id="backgroudColor" value="FFFFFF" onchange="SetBackColor()">
+        <button class="jscolor {valueElement: 'backgroudColor'}" style="height:30px; width: 80px;">Back color</button>
+        Font:<input type="text" id="inputallfont" style="width:100px;" value="Hobo Std" onchange="SetFontforAll()">
+        <input class="button white" type="button" onclick="ReLayout()" value="Re-layout">
+        <input class="button white" type="button" id="addconstrain" onclick="AddConstrain()" value="AddConstrain">
+        <input class="button white" type="button" onclick="ShowWords()" value="WordsList">
+        <input class="button white" type="button" onclick="ShowConstrain()" value="ShowConstrain">
+        <input class="button white" type="button" onclick="AddWord()" value="AddWord">
+        <div id="sample" class="dropdown" style="float:left">
+           <dt><a href="#"><span>01<img class="flag" src="img/C1.png" alt="" /><span class="value">0</span></span></a></dt>
+            <dd>
+                <ul>
+                    <li><a href="#">01<img class="flag" src="img/C1.png" alt="" /><span class="value">0</span></a></li>
+                    <li><a href="#">02<img class="flag" src="img/C2.png" alt="" /><span class="value">1</span></a></li>
+                    <li><a href="#">03<img class="flag" src="img/C3.png" alt="" /><span class="value">2</span></a></li>
+                    <li><a href="#">04<img class="flag" src="img/C4.png" alt="" /><span class="value">3</span></a></li>
+					<li><a href="#">05<img class="flag" src="img/C5.png" alt="" /><span class="value">4</span></a></li>
+                    <li><a href="#">06<img class="flag" src="img/C6.png" alt="" /><span class="value">5</span></a></li>
+                    <li><a href="#">07<img class="flag" src="img/C7.png" alt="" /><span class="value">6</span></a></li>
+                    <li><a href="#">08<img class="flag" src="img/C8.png" alt="" /><span class="value">7</span></a></li>
+					<li><a href="#">09<img class="flag" src="img/C9.png" alt="" /><span class="value">8</span></a></li>
+                    <li><a href="#">10<img class="flag" src="img/C10.png" alt="" /><span class="value">9</span></a></li>
+                </ul>
+            </dd>
+        </div>
+    </div>
+    <div class="canvasparent">
+        <canvas id="canvas" width="1300" height="600"></canvas>
+        <canvas id="canvas2" width="500" height="400"></canvas>
+        <div class="canvasinfo">
+            <span id="canvasinfo"></span>
+        </div>
+    </div>
+
+   <center>
+
+       <input class="button white" type="button" onclick="IfDebug()" value="Ifdebug">
+       <input class="button white" type="button" onclick="PreOrAfterEdit(true)" value="Undo">
+       <input class="button white" type="button" onclick="PreOrAfterEdit(false)" value="Redo">
+       <input class="button white" type="button" onclick="DoReWordle()" value="ReWordle">
+
+    <div id="LoadBox">
+        <div class="row1">
+           Load Data<a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn">×</a>
+        </div>
+        <br>
+        <form name="form1">Open File：<input type="file" accept=".txt" name="fileinput" id='fileinput' onchange='TextRead()' style="display:none;">
+            <input class="button white" type="button" value="Browser" onclick="document.form1.fileinput.click()">
+            <span id="filepath"></span>
+        </form><br>
+        Input Text：<br><textarea type="text" name="txt" id="txt" style="height:200px;width:430px;margin:5px auto;"></textarea>
+        <br><button class="button white" onclick="GetData()">submit</button>
+    </div>
+
+    <div id="WordsList">
+        <div class="row1">Add Constrain<a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn2">×</a>
+        </div>
+        <div class="wordtable">
+            <table id="words_list" class="wordtable" style="text-align: left;"></table>
+        </div>
+        <div class="AddBtn">
+        <input class="button white" type="button" id="add_Constrain" value="Add" onclick="Add_Constrain()">
+        <br><br><hr><br>
+        <input class="button white" type="button" id="generate" value="Generate" onclick="Generate()">
+        </div>
+        <div class="constraintable" onselectstart="return false;">
+            <table id="constrain_list" class="constraintable" style="text-align: left;"></table>
+        </div>
+    </div>
+
+    <div id="ConstrainList">
+        <div class="row1">Constrain List<a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn3">×</a>
+        </div>
+        Double click to remove constrain:
+        <div class="constraintable2" onselectstart="return false;">
+            <table id="constrain_list2" class="constraintable2" style="text-align: left;"></table>
+        </div>
+    </div>
+
+   <div id="ShowWordsList">
+       <div class="row1">Word List<a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn4">×</a>
+       </div>
+       Choose Words to Delete:
+       <div class="wordtable2" onselectstart="return false;">
+           <table id="words_list2" class="wordtable2" style="text-align: left;"></table>
+       </div>
+       <input class="button white" type="button" id="DeleteWords" value="Delete" onclick="DeleteWords()">
+       Font:<input type="text" style="width:60px;" id="wordsFont" onchange="SetFontforSelect()" value="Hobo Std">
+       <input type="text" id="wordsColor" 	style="text-align:center;width:60px;" value="word color">
+
+   </div>
+
+    <div id="wordedittools" style="display:none;">
+        <input class="button white" type="button" onclick="DeleteWord(true,undefined)" value="DeleteWord">
+        Font:<input type="text" id="wordfont" style="width:100px;" value="Hobo Std" onchange="SetWordFont(false,undefined,undefined)">
+             <input type="text" id="wordColor" 	style="text-align:center;width:80px;" value="word color">
+			 
+
+    </div>
+
+    <div style="display:none"><textarea rows="1" cols="1" id="myTextArea" readonly="true"></textarea></div>
+</center>
+    <span id="textDomain"></span>
+    <span class="fontpreload" style="font-family: 'Hobo std'"></span>
+</body>
+    <script type="text/javascript" src="js/show.js"></script>
+    <script type="text/javascript" src="js/ReWordle.js"></script>
+    <script type="text/javascript" src="js/editting.js"></script>
+</html>

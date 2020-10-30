@@ -1,0 +1,4 @@
+AuthUserFile /home1/csirc/wwwroot//vis/projects/NewtestOrigin/.htpasswd
+AuthType Basic
+AuthName "Password Protected"
+Require valid-user

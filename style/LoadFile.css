@@ -1,0 +1,181 @@
+*{
+    margin: 0;
+    padding: 0;
+	list-style-type:none;
+}
+.EditAllTools{
+	position:relative;
+	width: 800px;
+	margin:10px auto 5px auto;
+}
+.nav{
+    float:left;
+    width: 120px;
+    height:30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 12px;
+    position: relative;
+    background: #643519;
+    margin-right:10px;
+}
+ul.nav-main{
+    width: 100%;
+    height: 100%;
+    list-style-type: none;
+}
+ul.nav-main span{
+    display: inline-block;
+    margin-left: 15px;
+    width: 7px;
+    height: 7px;
+    background: url('../img/down-icon.png') no-repeat;
+}
+.hover-up{
+    transition-duration: .5s;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+}
+.hover-down{
+    transition-duration: .5s;
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+}
+ul.nav-main>li{
+    width: 120px;
+    height: 100%;
+    display: block;
+    float: left;
+    background: #643519;
+    color: #fff;
+    margin-right: 1px;
+    cursor: pointer;
+}
+ul.nav-main>li:hover{
+    background: #643519;
+}
+div.hidden-box{
+    width: 118px;
+    border: 1px solid #643519;
+    border-top: 0;
+    position: absolute;
+    display:none;
+	background:#fff;
+    top: 30px;
+}
+.hidden-box>ul{
+    list-style-type: none;
+    color: #643519;
+    cursor: pointer;
+}
+.hidden-box li:hover{
+    background: #643519;
+    color: #fff;
+}
+.hidden-loc-index{
+    left: 0px;
+}
+
+.canvasparent{
+	margin:0 auto;
+	position:relative;
+	width:800px;
+	height:500px;
+    z-index:1;
+}
+.canvasbody{
+	position:relative;
+	margin:0 auto;
+	width:800px;
+	height:500px;
+	border:3px solid #AAAAAA;
+	z-index:2;
+}
+.canvasinfo{
+	float:left;
+	position:relative;
+    background-color: #fff895;
+    font-size: 14px;
+    font-family: "Microsoft YaHei";
+	top:20px;
+	right:
+	z-index:111;
+	border:3px solid #444;
+	display:none;
+}
+#LoadBox{
+    margin:auto;
+    position:absolute;
+    left:0;right:0;top:100px;
+    background:white;
+    width:500px;height:400px;
+    border:3px solid #AAAAAA;
+    border-radius:7px;
+    z-index:10000;
+    display:none;}
+.row1{
+    background:#f7f7f7;
+    padding:0px 20px;
+    line-height:50px;
+    height:50px;
+    font-weight:bold;
+    color:#666666;
+    font-size:20px;}
+.close_btn{
+    font-family:arial;
+    font-size:30px;
+    font-weight:700;
+    color:#999999;
+    text-decoration:none;
+    float:right;
+    padding-right:4px;}
+#textDomain {
+            visibility: hidden;
+            white-space: nowrap;
+            font-size: 28px;
+            font-family:Microsoft YaHei;
+        }
+#WordsList{
+    margin:auto;
+    position:absolute;
+    left:0;right:0;top:100px;
+    background:white;
+    width:570px;height:400px;
+    border:3px solid #AAAAAA;
+    border-radius:7px;
+    z-index:10000;
+    display:none;}
+.wordtable{
+	margin:5px 0px 0px 10px;
+	float:left;
+    max-height:80%;
+    width: 230px;
+    overflow:auto;}
+.AddBtn{
+	margin:120px 20px 0px 20px;
+    float:left;
+}
+.constraintable{
+	margin:5px 0px 0px 0px;
+    float:left;
+    max-height: 80%;
+    width: 200px;
+    overflow:auto;}
+#ConstrainList{
+    margin:auto;
+    position:absolute;
+    left:0;right:0;top:100px;
+    background:white;
+    width:300px;height:400px;
+    border:3px solid #AAAAAA;
+    border-radius:7px;
+    z-index:10000;
+    display:none;}
+.constraintable{
+    max-height: 80%;
+    width: 200px;
+    overflow:auto;}
+table td {
+    height:20px;
+    line-height:20px;        
+}
